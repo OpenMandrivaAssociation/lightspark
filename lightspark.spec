@@ -20,7 +20,6 @@ BuildRequires: pulseaudio-devel
 BuildRequires: fontconfig-devel
 BuildRequires: pcre-devel
 BuildRequires: xulrunner-devel
-BuildRequires: desktop-file-utils
 BuildRequires: curl-devel
 
 %description
@@ -76,26 +75,9 @@ Categories=GNOME;GTK;AudioVideo;Video;Player;
 MimeType=application/x-shockwave-flash;application/futuresplash;
 StartupNotify=true
 EOF
-desktop-file-validate $RPM_BUILD_ROOT%{_datadir}/applications/%{name}.desktop
 
 %clean
 rm -rf $RPM_BUILD_ROOT
-
-%post
-/sbin/ldconfig
-update-desktop-database &> /dev/null || :
-touch --no-create %{_datadir}/icons/hicolor &>/dev/null || :
-
-%postun
-/sbin/ldconfig
-update-desktop-database &> /dev/null || :
-if [ $1 -eq 0 ] ; then
-    touch --no-create %{_datadir}/icons/hicolor &>/dev/null
-    gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
-fi
-
-%posttrans
-gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 
 %files
 %defattr(-,root,root,-)
