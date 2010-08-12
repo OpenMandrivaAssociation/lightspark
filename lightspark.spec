@@ -1,6 +1,6 @@
 Name: lightspark
 Version: 0.4.3
-Release: %mkrel 1
+Release: %mkrel 2
 Summary: An alternative Flash Player implementation
 Group: Networking/WWW
 License: LGPLv3+
@@ -35,7 +35,6 @@ documentation was released.
 
 %package mozilla-plugin
 Summary: Mozilla compatible plugin for %{name}
-Requires: mozilla-filesystem gnash
 Group: Networking/WWW
 Suggests: gnash
 
