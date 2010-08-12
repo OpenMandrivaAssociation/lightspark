@@ -1,12 +1,12 @@
 Name: lightspark
-Version: 0.4.2.2
+Version: 0.4.3
 Release: %mkrel 1
 Summary: An alternative Flash Player implementation
 Group: Networking/WWW
 License: LGPLv3+
 URL: http://lightspark.sourceforge.net
 Source: http://edge.launchpad.net/lightspark/trunk/%name-%version/+download/%name-%version.tar.gz
-Patch0: lightspark-0.4.2.2-link.patch
+Patch0: lightspark-0.4.3-link.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: cmake
 BuildRequires: llvm >= 2.7
@@ -37,6 +37,7 @@ documentation was released.
 Summary: Mozilla compatible plugin for %{name}
 Requires: mozilla-filesystem gnash
 Group: Networking/WWW
+Suggests: gnash
 
 %description mozilla-plugin
 This is the Mozilla compatible plugin for %{name}
@@ -52,17 +53,17 @@ This is the Mozilla compatible plugin for %{name}
 %make
 
 %install
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
 %makeinstall_std -C build
 
 #remove devel file from package
-rm $RPM_BUILD_ROOT%{_libdir}/%{name}/lib%{name}.so
+rm %{buildroot}%{_libdir}/%{name}/lib%{name}.so
 
-install -Dpm 644 media/%{name}-ico.svg $RPM_BUILD_ROOT%{_datadir}/icons/hicolor/scalable/apps/%{name}.svg
-install -Dpm 644 media/%{name}-logo.svg $RPM_BUILD_ROOT%{_datadir}/%{name}
+install -Dpm 644 media/%{name}-ico.svg %{buildroot}%{_datadir}/icons/hicolor/scalable/apps/%{name}.svg
+install -Dpm 644 media/%{name}-logo.svg %{buildroot}%{_datadir}/%{name}
 
-mkdir -p $RPM_BUILD_ROOT%{_datadir}/applications
-cat <<EOF >$RPM_BUILD_ROOT%{_datadir}/applications/%{name}.desktop
+mkdir -p %{buildroot}%{_datadir}/applications
+cat <<EOF >%{buildroot}%{_datadir}/applications/%{name}.desktop
 [Desktop Entry]
 Name=Lightspark
 Comment=An alternative flash player
@@ -77,7 +78,7 @@ StartupNotify=true
 EOF
 
 %clean
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
 
 %files
 %defattr(-,root,root,-)
