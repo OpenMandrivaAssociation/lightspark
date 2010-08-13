@@ -1,6 +1,6 @@
 Name: lightspark
 Version: 0.4.3
-Release: %mkrel 5
+Release: %mkrel 6
 Summary: An alternative Flash Player implementation
 Group: Networking/WWW
 License: LGPLv3+
@@ -21,7 +21,6 @@ BuildRequires: fontconfig-devel
 BuildRequires: pcre-devel
 BuildRequires: xulrunner-devel
 BuildRequires: curl-devel
-BuildRequires: ffi5-devel
 BuildRequires: gnash
 
 %description
@@ -52,6 +51,7 @@ This is the Mozilla compatible plugin for %{name}
 %cmake -DCOMPILE_PLUGIN=1  \
        -DPLUGIN_DIRECTORY="%{_libdir}/mozilla/plugins/" \
        -DENABLE_SOUND=1
+
 %make
 
 %install
@@ -59,7 +59,10 @@ rm -rf %{buildroot}
 %makeinstall_std -C build
 
 #remove devel file from package
-rm %{buildroot}%{_libdir}/%{name}/lib%{name}.so
+rm -f %{buildroot}%{_libdir}/%{name}/lib%{name}.so
+
+#(eandry) move libs where binary want it to be (need a real fix)
+mv %{buildroot}%{_libdir}/%{name}/lib%{name}.so* %{buildroot}%{_libdir}/
 
 install -Dpm 644 media/%{name}-ico.svg %{buildroot}%{_datadir}/icons/hicolor/scalable/apps/%{name}.svg
 install -Dpm 644 media/%{name}-logo.svg %{buildroot}%{_datadir}/%{name}
@@ -91,7 +94,7 @@ rm -rf %{buildroot}
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/icons/hicolor/scalable/apps/%{name}.svg
 %{_datadir}/man/man1/%{name}.1.*
-%{_libdir}/%{name}
+%{_libdir}/lib%{name}.so*
 
 %files mozilla-plugin
 %defattr(-,root,root,-)
