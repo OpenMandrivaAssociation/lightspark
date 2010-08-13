@@ -1,6 +1,6 @@
 Name: lightspark
 Version: 0.4.3
-Release: %mkrel 3
+Release: %mkrel 4
 Summary: An alternative Flash Player implementation
 Group: Networking/WWW
 License: LGPLv3+
