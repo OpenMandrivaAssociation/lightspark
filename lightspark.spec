@@ -21,7 +21,6 @@ BuildRequires: fontconfig-devel
 BuildRequires: pcre-devel
 BuildRequires: xulrunner-devel
 BuildRequires: curl-devel
-BuildRequires: gnash
 
 %description
 Lightspark is a modern, free, open-source flash player implementation.
@@ -48,9 +47,11 @@ This is the Mozilla compatible plugin for %{name}
 %patch0 -p0
 
 %build
-%cmake -DCOMPILE_PLUGIN=1  \
+%cmake -DCOMPILE_PLUGIN=1 \
        -DPLUGIN_DIRECTORY="%{_libdir}/mozilla/plugins/" \
-       -DENABLE_SOUND=1
+       -DENABLE_SOUND=1 \
+       -DGNASH_EXE_PATH="%{_bindir}/gnash" \
+       -DCMAKE_BUILD_TYPE=Release
 
 %make
 
