@@ -1,6 +1,6 @@
 Name: lightspark
 Version: 0.4.3
-Release: %mkrel 4
+Release: %mkrel 5
 Summary: An alternative Flash Player implementation
 Group: Networking/WWW
 License: LGPLv3+
@@ -22,6 +22,7 @@ BuildRequires: pcre-devel
 BuildRequires: xulrunner-devel
 BuildRequires: curl-devel
 BuildRequires: ffi5-devel
+BuildRequires: gnash
 
 %description
 Lightspark is a modern, free, open-source flash player implementation.
