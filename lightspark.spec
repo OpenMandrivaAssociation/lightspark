@@ -1,6 +1,6 @@
 Name: lightspark
 Version: 0.4.3
-Release: %mkrel 2
+Release: %mkrel 3
 Summary: An alternative Flash Player implementation
 Group: Networking/WWW
 License: LGPLv3+
@@ -21,6 +21,7 @@ BuildRequires: fontconfig-devel
 BuildRequires: pcre-devel
 BuildRequires: xulrunner-devel
 BuildRequires: curl-devel
+BuildRequires: ffi5-devel
 
 %description
 Lightspark is a modern, free, open-source flash player implementation.
@@ -37,6 +38,7 @@ documentation was released.
 Summary: Mozilla compatible plugin for %{name}
 Group: Networking/WWW
 Suggests: gnash
+Conflicts: gnash-firefox-plugin
 
 %description mozilla-plugin
 This is the Mozilla compatible plugin for %{name}
