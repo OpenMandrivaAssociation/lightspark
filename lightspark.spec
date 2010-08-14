@@ -1,12 +1,12 @@
 Name: lightspark
 Version: 0.4.3
-Release: %mkrel 6
+Release: %mkrel 7
 Summary: An alternative Flash Player implementation
 Group: Networking/WWW
 License: LGPLv3+
 URL: http://lightspark.sourceforge.net
 Source: http://edge.launchpad.net/lightspark/trunk/%name-%version/+download/%name-%version.tar.gz
-Patch0: lightspark-0.4.3-link.patch
+Patch0: lightspark-0.4.3-cmakelists.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: cmake
 BuildRequires: llvm >= 2.7
@@ -44,7 +44,7 @@ This is the Mozilla compatible plugin for %{name}
 
 %prep
 %setup -q
-%patch0 -p0
+%patch0 -p1
 
 %build
 %cmake -DCOMPILE_PLUGIN=1 \
