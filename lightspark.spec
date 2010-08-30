@@ -44,7 +44,7 @@ This is the Mozilla compatible plugin for %{name}
 
 %prep
 %setup -q
-%patch0 -p1
+#patch0 -p1
 
 %build
 %cmake -DCOMPILE_PLUGIN=1 \
