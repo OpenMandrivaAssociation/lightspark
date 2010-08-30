@@ -6,7 +6,7 @@ Group: Networking/WWW
 License: LGPLv3+
 URL: http://lightspark.sourceforge.net
 Source: http://edge.launchpad.net/lightspark/trunk/%name-%version/+download/%name-%version.tar.gz
-Patch0: lightspark-0.4.3-cmakelists.patch
+#Patch0: lightspark-0.4.3-cmakelists.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: cmake
 BuildRequires: llvm >= 2.7
@@ -45,9 +45,10 @@ This is the Mozilla compatible plugin for %{name}
 
 %prep
 %setup -q
-#patch0 -p1
+#%patch0 -p1
 
 %build
+%define _disable_ld_no_undefined 1
 %cmake -DCOMPILE_PLUGIN=1 \
        -DPLUGIN_DIRECTORY="%{_libdir}/mozilla/plugins/" \
        -DENABLE_SOUND=1 \
@@ -84,10 +85,12 @@ MimeType=application/x-shockwave-flash;application/futuresplash;
 StartupNotify=true
 EOF
 
+%find_lang %name
+
 %clean
 rm -rf %{buildroot}
 
-%files
+%files -f %name.lang
 %defattr(-,root,root,-)
 %doc COPYING COPYING.LESSER ChangeLog
 %{_bindir}/%{name}
