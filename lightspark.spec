@@ -21,6 +21,7 @@ BuildRequires: fontconfig-devel
 BuildRequires: pcre-devel
 BuildRequires: xulrunner-devel
 BuildRequires: curl-devel
+Requires: fonts-ttf-liberation
 
 %description
 Lightspark is a modern, free, open-source flash player implementation.
