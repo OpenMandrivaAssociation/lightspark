@@ -1,12 +1,15 @@
+%define major 0
+%define libname %mklibname %{name} %{major}
+%define develname %mklibname -d %{name} 
+
 Name: lightspark
 Version: 0.4.4
-Release: %mkrel 1
+Release: %mkrel 2
 Summary: An alternative Flash Player implementation
 Group: Networking/WWW
 License: LGPLv3+
 URL: http://lightspark.sourceforge.net
 Source: http://edge.launchpad.net/lightspark/trunk/%name-%version/+download/%name-%version.tar.gz
-#Patch0: lightspark-0.4.3-cmakelists.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: cmake
 BuildRequires: llvm >= 2.7
@@ -34,6 +37,22 @@ Lightspark features:
 modern hardware. Designed from scratch after the official Flash 
 documentation was released.
 
+%package -n %{libname}
+Summary: %{name} libraries
+Group: System/Libraries
+
+%description -n %{libname}
+This is the libraries used by %{name}.
+
+%package -n %{develname}
+Summary: Development libraries for %{name}
+Group: Development/C++
+Provides: %{name}-devel = %{version}-%{release}
+Requires: %{libname} = %{version}-%{release}
+
+%description -n %{develname}
+Development files for the %{name} libraries.
+
 %package mozilla-plugin
 Summary: Mozilla compatible plugin for %{name}
 Group: Networking/WWW
@@ -45,7 +64,6 @@ This is the Mozilla compatible plugin for %{name}
 
 %prep
 %setup -q
-#%patch0 -p1
 
 %build
 %define _disable_ld_no_undefined 1
@@ -53,7 +71,8 @@ This is the Mozilla compatible plugin for %{name}
        -DPLUGIN_DIRECTORY="%{_libdir}/mozilla/plugins/" \
        -DENABLE_SOUND=1 \
        -DGNASH_EXE_PATH="%{_bindir}/gnash" \
-       -DCMAKE_BUILD_TYPE=Release
+       -DCMAKE_BUILD_TYPE=Release \
+       -DCMAKE_SKIP_RPATH:BOOL=ON
 
 %make
 
@@ -61,11 +80,9 @@ This is the Mozilla compatible plugin for %{name}
 rm -rf %{buildroot}
 %makeinstall_std -C build
 
-#remove devel file from package
-rm -f %{buildroot}%{_libdir}/%{name}/lib%{name}.so
-
-#(eandry) move libs where binary want it to be (need a real fix)
-mv %{buildroot}%{_libdir}/%{name}/lib%{name}.so* %{buildroot}%{_libdir}/
+#(eandry) tell lightspark where the libs are
+%__install -d -m 0755  %{buildroot}%{_sysconfdir}/ld.so.conf.d
+echo "%{_libdir}/lightspark" > %{buildroot}%{_sysconfdir}/ld.so.conf.d/lightspark.conf
 
 install -Dpm 644 media/%{name}-ico.svg %{buildroot}%{_datadir}/icons/hicolor/scalable/apps/%{name}.svg
 install -Dpm 644 media/%{name}-logo.svg %{buildroot}%{_datadir}/%{name}
@@ -99,7 +116,15 @@ rm -rf %{buildroot}
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/icons/hicolor/scalable/apps/%{name}.svg
 %{_datadir}/man/man1/%{name}.1.*
-%{_libdir}/lib%{name}.so*
+
+%files -n %{libname}
+%defattr(-,root,root)
+%config %{_sysconfdir}/ld.so.conf.d/lightspark.conf
+%{_libdir}/%{name}/lib%{name}.so*
+
+%files -n %{develname}
+%defattr(-,root,root)
+%{_libdir}/%{name}/lib%{name}.so
 
 %files mozilla-plugin
 %defattr(-,root,root,-)
