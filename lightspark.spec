@@ -3,8 +3,8 @@
 %define develname %mklibname -d %{name} 
 
 Name: lightspark
-Version: 0.4.4
-Release: %mkrel 2
+Version: 0.4.4.1
+Release: %mkrel 1
 Summary: An alternative Flash Player implementation
 Group: Networking/WWW
 License: LGPLv3+
@@ -66,14 +66,13 @@ This is the Mozilla compatible plugin for %{name}
 %setup -q
 
 %build
-%define _disable_ld_no_undefined 1
+
 %cmake -DCOMPILE_PLUGIN=1 \
        -DPLUGIN_DIRECTORY="%{_libdir}/mozilla/plugins/" \
        -DENABLE_SOUND=1 \
        -DGNASH_EXE_PATH="%{_bindir}/gnash" \
-       -DCMAKE_BUILD_TYPE=Release \
-       -DCMAKE_SKIP_RPATH:BOOL=ON
-
+       -DCMAKE_BUILD_TYPE=Release
+       
 %make
 
 %install
