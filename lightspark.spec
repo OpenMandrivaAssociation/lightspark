@@ -66,14 +66,26 @@ This is the Mozilla compatible plugin for %{name}
 %setup -q
 
 %build
+mkdir build
+pushd build
 
-%cmake -DCOMPILE_PLUGIN=1 \
-       -DPLUGIN_DIRECTORY="%{_libdir}/mozilla/plugins/" \
-       -DENABLE_SOUND=1 \
-       -DGNASH_EXE_PATH="%{_bindir}/gnash" \
-       -DCMAKE_BUILD_TYPE=Release
-       
+cmake .. \
+    -DCOMPILE_PLUGIN=1 \
+    -DPLUGIN_DIRECTORY="%{_libdir}/mozilla/plugins/" \
+    -DENABLE_SOUND=1 \
+    -DGNASH_EXE_PATH="%{_bindir}/gnash" \
+    -DCMAKE_C_FLAGS:STRING="%{optflags}" \
+    -DCMAKE_CXX_FLAGS:STRING="%{optflags}" \
+    -DCMAKE_BUILD_TYPE:STRING=Release \
+    -DCMAKE_SKIP_RPATH:BOOL=ON \
+    -DCMAKE_INSTALL_PREFIX:PATH=%{_prefix} \
+    %if %{_lib} == lib64
+    -DLIB_SUFFIX=64
+    %endif
+
 %make
+
+popd
 
 %install
 rm -rf %{buildroot}
