@@ -3,7 +3,7 @@
 %define develname %mklibname -d %{name} 
 
 Name: lightspark
-Version: 0.4.4.1
+Version: 0.4.4.2
 Release: %mkrel 1
 Summary: An alternative Flash Player implementation
 Group: Networking/WWW
@@ -25,6 +25,7 @@ BuildRequires: pcre-devel
 BuildRequires: xulrunner-devel
 BuildRequires: curl-devel
 Requires: fonts-ttf-liberation
+Suggests: %{name}-pulse
 
 %description
 Lightspark is a modern, free, open-source flash player implementation.
@@ -61,6 +62,13 @@ Conflicts: gnash-firefox-plugin
 
 %description mozilla-plugin
 This is the Mozilla compatible plugin for %{name}
+
+%package pulse
+Summary: PulseAudio plugin for %{name}
+Group: Networking/WWW
+
+%description pulse
+This is the PulseAudio plugin for %{name}
 
 %prep
 %setup -q
@@ -140,3 +148,7 @@ rm -rf %{buildroot}
 %files mozilla-plugin
 %defattr(-,root,root,-)
 %{_libdir}/mozilla/plugins/lib%{name}plugin.so
+
+%files pulse
+%defattr(-,root,root,-)
+%{_libdir}/%{name}/plugins/lib%{name}pulseplugin.so
