@@ -24,6 +24,7 @@ BuildRequires: fontconfig-devel
 BuildRequires: pcre-devel
 BuildRequires: xulrunner-devel
 BuildRequires: curl-devel
+BuildRequires: boost-devel
 Requires: fonts-ttf-liberation
 Suggests: %{name}-pulse
 
