@@ -13,7 +13,11 @@ Source: http://edge.launchpad.net/lightspark/trunk/%name-%version/+download/%nam
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: cmake
 BuildRequires: llvm >= 2.7
+%if %{mdkversion} > 201010
 BuildRequires: glew-devel >= 1.5.4
+%else
+BuildRequires: glew-devel >= 1.5.2
+%endif
 BuildRequires: ftgl-devel
 BuildRequires: ffmpeg-devel
 BuildRequires: nasm
