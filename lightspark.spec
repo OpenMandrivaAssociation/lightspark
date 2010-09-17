@@ -12,10 +12,11 @@ URL: http://lightspark.sourceforge.net
 Source: http://edge.launchpad.net/lightspark/trunk/%name-%version/+download/%name-%version.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: cmake
-BuildRequires: llvm >= 2.7
 %if %{mdkversion} > 201010
+BuildRequires: llvm >= 2.7
 BuildRequires: glew-devel >= 1.5.4
 %else
+BuildRequires: llvm >= 2.6
 BuildRequires: glew-devel >= 1.5.2
 %endif
 BuildRequires: ftgl-devel
