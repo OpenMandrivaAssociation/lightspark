@@ -4,7 +4,7 @@
 
 Name: lightspark
 Version: 0.4.4.3
-Release: %mkrel 1
+Release: %mkrel 2
 Summary: An alternative Flash Player implementation
 Group: Networking/WWW
 License: LGPLv3+
@@ -147,7 +147,7 @@ rm -rf %{buildroot}
 %files -n %{libname}
 %defattr(-,root,root)
 %config %{_sysconfdir}/ld.so.conf.d/lightspark.conf
-%{_libdir}/%{name}/lib%{name}.so*
+%{_libdir}/%{name}/lib%{name}.so.*
 
 %files -n %{develname}
 %defattr(-,root,root)
