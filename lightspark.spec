@@ -30,7 +30,7 @@ BuildRequires: pcre-devel
 BuildRequires: xulrunner-devel
 BuildRequires: curl-devel
 BuildRequires: boost-devel
-BuildRequires: libxml2-devel
+BuildRequires: libxml++2.6-devel
 Requires: fonts-ttf-liberation
 Suggests: %{name}-pulse
 
