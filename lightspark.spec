@@ -141,7 +141,7 @@ rm -rf %{buildroot}
 %{_bindir}/tightspark
 %{_datadir}/%{name}
 %{_datadir}/applications/%{name}.desktop
-%{_datadir}/icons/hicolor/scalable/apps/%{name}.svg
+%{_datadir}/icons/hicolor/*/apps/%{name}.*
 %{_datadir}/man/man1/%{name}.1.*
 
 %files -n %{libname}
