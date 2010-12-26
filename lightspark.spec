@@ -137,6 +137,7 @@ rm -rf %{buildroot}
 %files -f %name.lang
 %defattr(-,root,root,-)
 %doc COPYING COPYING.LESSER ChangeLog
+%config(noreplace) %{_sysconfdir}/xdg/lightspark.conf
 %{_bindir}/%{name}
 %{_bindir}/tightspark
 %{_datadir}/%{name}
