@@ -82,6 +82,7 @@ This is the PulseAudio plugin for %{name}
 %setup -q
 
 %build
+%define _disable_ld_no_undefined 1
 %cmake \
     -DCOMPILE_PLUGIN=1 \
     -DPLUGIN_DIRECTORY="%{_libdir}/mozilla/plugins/" \
