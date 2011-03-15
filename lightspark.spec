@@ -3,8 +3,8 @@
 %define develname %mklibname -d %{name} 
 
 Name: lightspark
-Version: 0.4.5.1
-Release: %mkrel 3
+Version: 0.4.5.3
+Release: %mkrel 1
 Summary: An alternative Flash Player implementation
 Group: Networking/WWW
 License: LGPLv3+
@@ -82,26 +82,13 @@ This is the PulseAudio plugin for %{name}
 %setup -q
 
 %build
-mkdir build
-pushd build
-
-cmake .. \
+%cmake \
     -DCOMPILE_PLUGIN=1 \
     -DPLUGIN_DIRECTORY="%{_libdir}/mozilla/plugins/" \
     -DENABLE_SOUND=1 \
-    -DGNASH_EXE_PATH="%{_bindir}/gnash" \
-    -DCMAKE_C_FLAGS:STRING="%{optflags}" \
-    -DCMAKE_CXX_FLAGS:STRING="%{optflags}" \
-    -DCMAKE_BUILD_TYPE:STRING=Release \
-    -DCMAKE_SKIP_RPATH:BOOL=ON \
-    -DCMAKE_INSTALL_PREFIX:PATH=%{_prefix} \
-    %if %{_lib} == lib64
-    -DLIB_SUFFIX=64
-    %endif
+    -DGNASH_EXE_PATH="%{_bindir}/gnash"
 
 %make
-
-popd
 
 %install
 rm -rf %{buildroot}
