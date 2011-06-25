@@ -3,7 +3,7 @@
 %define develname %mklibname -d %{name} 
 
 Name: lightspark
-Version: 0.4.8
+Version: 0.4.8.1
 Release: %mkrel 1
 Summary: An alternative Flash Player implementation
 Group: Networking/WWW
@@ -99,23 +99,7 @@ rm -rf %{buildroot}
 %__install -d -m 0755  %{buildroot}%{_sysconfdir}/ld.so.conf.d
 echo "%{_libdir}/lightspark" > %{buildroot}%{_sysconfdir}/ld.so.conf.d/lightspark.conf
 
-install -Dpm 644 media/%{name}-ico.svg %{buildroot}%{_datadir}/icons/hicolor/scalable/apps/%{name}.svg
 install -Dpm 644 media/%{name}-logo.svg %{buildroot}%{_datadir}/%{name}
-
-mkdir -p %{buildroot}%{_datadir}/applications
-cat <<EOF >%{buildroot}%{_datadir}/applications/%{name}.desktop
-[Desktop Entry]
-Name=Lightspark
-Comment=An alternative flash player
-TryExec=lightspark
-Exec=lightspark
-Icon=lightspark
-NoDisplay=true
-Type=Application
-Categories=GNOME;GTK;AudioVideo;Video;Player;
-MimeType=application/x-shockwave-flash;application/futuresplash;
-StartupNotify=true
-EOF
 
 %find_lang %name
 
