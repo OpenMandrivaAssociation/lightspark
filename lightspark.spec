@@ -3,8 +3,8 @@
 %define develname %mklibname -d %{name} 
 
 Name: lightspark
-Version: 0.4.8.1
-Release: %mkrel 1
+Version: 0.5.4
+Release: 1
 Summary: An alternative Flash Player implementation
 Group: Networking/WWW
 License: LGPLv3+
@@ -92,7 +92,6 @@ This is the PulseAudio plugin for %{name}
 %make
 
 %install
-rm -rf %{buildroot}
 %makeinstall_std -C build
 
 #(eandry) tell lightspark where the libs are
@@ -103,11 +102,7 @@ install -Dpm 644 media/%{name}-logo.svg %{buildroot}%{_datadir}/%{name}
 
 %find_lang %name
 
-%clean
-rm -rf %{buildroot}
-
 %files -f %name.lang
-%defattr(-,root,root,-)
 %doc COPYING COPYING.LESSER ChangeLog
 %config(noreplace) %{_sysconfdir}/xdg/lightspark.conf
 %{_bindir}/%{name}
@@ -118,18 +113,14 @@ rm -rf %{buildroot}
 %{_datadir}/man/man1/%{name}.1.*
 
 %files -n %{libname}
-%defattr(-,root,root)
 %config %{_sysconfdir}/ld.so.conf.d/lightspark.conf
 %{_libdir}/%{name}/lib%{name}.so.*
 
 %files -n %{develname}
-%defattr(-,root,root)
 %{_libdir}/%{name}/lib%{name}.so
 
 %files mozilla-plugin
-%defattr(-,root,root,-)
 %{_libdir}/mozilla/plugins/lib%{name}plugin.so
 
 %files pulse
-%defattr(-,root,root,-)
 %{_libdir}/%{name}/plugins/lib%{name}pulseplugin.so
