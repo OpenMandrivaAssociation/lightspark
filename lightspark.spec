@@ -14,6 +14,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: cmake
 %if %{mdkversion} > 201020
 BuildRequires: llvm >= 2.7
+BuildRequires: llvm-devel
 BuildRequires: glew-devel >= 1.5.4
 %else
 BuildRequires: llvm >= 2.6
