@@ -4,13 +4,12 @@
 
 Name: lightspark
 Version: 0.5.5
-Release: 3
+Release: 4
 Summary: An alternative Flash Player implementation
 Group: Networking/WWW
 License: LGPLv3+
 URL: http://lightspark.sourceforge.net
 Source: http://edge.launchpad.net/lightspark/trunk/%name-%version/+download/%name-%version.tar.gz
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: cmake
 %if %{mdkversion} > 201020
 BuildRequires: llvm >= 2.7
