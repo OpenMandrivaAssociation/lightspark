@@ -3,13 +3,13 @@
 %define develname %mklibname -d %{name} 
 
 Name: lightspark
-Version: 0.5.7
+Version: 0.6.0.1
 Release: 1
 Summary: An alternative Flash Player implementation
 Group: Networking/WWW
 License: LGPLv3+
 URL: http://lightspark.sourceforge.net
-Source: http://edge.launchpad.net/lightspark/trunk/%name-%version/+download/%name-%version.tar.gz
+Source0: http://edge.launchpad.net/lightspark/trunk/%name-%version/+download/%name-%version.tar.gz
 BuildRequires: cmake
 %if %{mdkversion} > 201020
 BuildRequires: llvm >= 2.7
