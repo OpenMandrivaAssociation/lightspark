@@ -3,8 +3,8 @@
 %define develname %mklibname -d %{name} 
 
 Name: lightspark
-Version: 0.6.0.1
-Release: 3
+Version: 0.7.0
+Release: 1
 Summary: An alternative Flash Player implementation
 Group: Networking/WWW
 License: LGPLv3+
