@@ -1,38 +1,32 @@
 %define major 0
 %define libname %mklibname %{name} %{major}
-%define develname %mklibname -d %{name} 
+%define devname %mklibname -d %{name} 
 
-Name: lightspark
-Version: 0.7.0
-Release: 1
-Summary: An alternative Flash Player implementation
-Group: Networking/WWW
-License: LGPLv3+
-URL: http://lightspark.sourceforge.net
-Source0: http://edge.launchpad.net/lightspark/trunk/%name-%version/+download/%name-%version.tar.gz
-BuildRequires: cmake
-%if %{mdkversion} > 201020
-BuildRequires: llvm >= 2.7
-BuildRequires: llvm-devel
-BuildRequires: glew-devel >= 1.5.4
-%else
-BuildRequires: llvm >= 2.6
-BuildRequires: glew-devel >= 1.5.2
-%endif
-BuildRequires: ftgl-devel
-BuildRequires: ffmpeg-devel
-BuildRequires: nasm
-BuildRequires: libSDL-devel
-BuildRequires: gtkglext-devel
-BuildRequires: pulseaudio-devel
-BuildRequires: fontconfig-devel
-BuildRequires: pcre-devel
-BuildRequires: xulrunner-devel
-BuildRequires: curl-devel
-BuildRequires: boost-devel
-BuildRequires: libxml++2.6-devel
-Requires: fonts-ttf-liberation
-Suggests: %{name}-pulse
+Summary:	An alternative Flash Player implementation
+Name:		lightspark
+Version:	0.7.0
+Release:	1
+Group:		Networking/WWW
+License:	LGPLv3+
+URL:		http://lightspark.sourceforge.net
+Source0:	http://edge.launchpad.net/lightspark/trunk/%{name}-%{version}/+download/%{name}-%{version}.tar.gz
+BuildRequires:	cmake
+BuildRequires:	nasm
+BuildRequires:	boost-devel
+BuildRequires:	llvm-devel
+BuildRequires:	pkgconfig(fontconfig)
+BuildRequires:	pkgconfig(ftgl)
+BuildRequires:	pkgconfig(glew)
+BuildRequires:	pkgconfig(gtkglext-1.0)
+BuildRequires:	pkgconfig(libavcodec)
+BuildRequires:	pkgconfig(libcurl)
+BuildRequires:	pkgconfig(libpcre)
+BuildRequires:	pkgconfig(libpulse)
+BuildRequires:	pkgconfig(libxml++-2.6)
+BuildRequires:	pkgconfig(libxul)
+BuildRequires:	pkgconfig(sdl)
+Requires:	fonts-ttf-liberation
+Suggests:	%{name}-pulse
 
 %description
 Lightspark is a modern, free, open-source flash player implementation.
@@ -46,34 +40,34 @@ modern hardware. Designed from scratch after the official Flash
 documentation was released.
 
 %package -n %{libname}
-Summary: %{name} libraries
-Group: System/Libraries
+Summary:	%{name} libraries
+Group:		System/Libraries
 
 %description -n %{libname}
 This is the libraries used by %{name}.
 
-%package -n %{develname}
-Summary: Development libraries for %{name}
-Group: Development/C++
-Provides: %{name}-devel = %{version}-%{release}
-Requires: %{libname} = %{version}-%{release}
+%package -n %{devname}
+Summary:	Development libraries for %{name}
+Group:		Development/C++
+Provides:	%{name}-devel = %{version}-%{release}
+Requires:	%{libname} = %{version}-%{release}
 
-%description -n %{develname}
+%description -n %{devname}
 Development files for the %{name} libraries.
 
 %package mozilla-plugin
-Summary: Mozilla compatible plugin for %{name}
-Group: Networking/WWW
-Suggests: gnash
-Suggests: %{name}-pulse
-Conflicts: gnash-firefox-plugin
+Summary:	Mozilla compatible plugin for %{name}
+Group:		Networking/WWW
+Suggests:	gnash
+Suggests:	%{name}-pulse
+Conflicts:	gnash-firefox-plugin
 
 %description mozilla-plugin
 This is the Mozilla compatible plugin for %{name}
 
 %package pulse
-Summary: PulseAudio plugin for %{name}
-Group: Networking/WWW
+Summary:	PulseAudio plugin for %{name}
+Group:		Networking/WWW
 
 %description pulse
 This is the PulseAudio plugin for %{name}
@@ -95,28 +89,28 @@ This is the PulseAudio plugin for %{name}
 %makeinstall_std -C build
 
 #(eandry) tell lightspark where the libs are
-%__install -d -m 0755  %{buildroot}%{_sysconfdir}/ld.so.conf.d
+install -d -m 0755  %{buildroot}%{_sysconfdir}/ld.so.conf.d
 echo "%{_libdir}/lightspark" > %{buildroot}%{_sysconfdir}/ld.so.conf.d/lightspark.conf
 
 install -Dpm 644 media/%{name}-logo.svg %{buildroot}%{_datadir}/%{name}
 
-%find_lang %name
+%find_lang %{name}
 
-%files -f %name.lang
+%files -f %{name}.lang
 %doc COPYING COPYING.LESSER ChangeLog
 %config(noreplace) %{_sysconfdir}/xdg/lightspark.conf
 %{_bindir}/%{name}
 %{_bindir}/tightspark
-%{_datadir}/%{name}
 %{_datadir}/applications/%{name}.desktop
-%{_datadir}/icons/hicolor/*/apps/%{name}.*
-%{_datadir}/man/man1/%{name}.1.*
+%{_datadir}/%{name}
+%{_iconsdir}/hicolor/*/apps/%{name}.*
+%{_mandir}/man1/%{name}.1*
 
 %files -n %{libname}
 %config %{_sysconfdir}/ld.so.conf.d/lightspark.conf
 %{_libdir}/%{name}/lib%{name}.so.*
 
-%files -n %{develname}
+%files -n %{devname}
 %{_libdir}/%{name}/lib%{name}.so
 
 %files mozilla-plugin
@@ -124,3 +118,4 @@ install -Dpm 644 media/%{name}-logo.svg %{buildroot}%{_datadir}/%{name}
 
 %files pulse
 %{_libdir}/%{name}/plugins/lib%{name}pulseplugin.so
+
