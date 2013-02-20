@@ -17,7 +17,6 @@ BuildRequires:	llvm-devel
 BuildRequires:	pkgconfig(fontconfig)
 BuildRequires:	pkgconfig(ftgl)
 BuildRequires:	pkgconfig(glew)
-BuildRequires:	pkgconfig(gtkglext-1.0)
 BuildRequires:	pkgconfig(libavcodec)
 BuildRequires:	pkgconfig(libcurl)
 BuildRequires:	pkgconfig(libpcre)
