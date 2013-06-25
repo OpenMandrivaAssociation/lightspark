@@ -1,2 +1,4 @@
-sources:
+removed_sources:
   lightspark-0.7.1.tar.gz: 18bd1fb85296f9163a8a377609d8985ea3870b86
+sources:
+  lightspark-0.7.2.tar.gz: f4c5fa3cf9da9c39da773640184e102ab9818ed7

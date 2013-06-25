@@ -4,12 +4,12 @@
 
 Summary:	An alternative Flash Player implementation
 Name:		lightspark
-Version:	0.7.1
+Version:	0.7.2
 Release:	1
 Group:		Networking/WWW
 License:	LGPLv3+
 URL:		http://lightspark.sourceforge.net
-Source0:	http://edge.launchpad.net/lightspark/trunk/%{name}-%{version}/+download/%{name}-%{version}.tar.gz
+Source0:	https://launchpadlibrarian.net/134352855/lightspark-%version.tar.gz
 BuildRequires:	cmake
 BuildRequires:	nasm
 BuildRequires:	boost-devel
