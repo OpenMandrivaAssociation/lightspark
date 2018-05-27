@@ -28,6 +28,8 @@ BuildRequires:	pkgconfig(sdl)
 BuildRequires:  pkgconfig(cairo)
 BuildRequires:  pkgconfig(pango)
 BuildRequires:  pkgconfig(pangocairo)
+BuildRequires:	pkgconfig(SDL2_mixer)
+BuildRequires:	pkgconfig(gtk+-2.0)
 Requires:	fonts-ttf-liberation
 Suggests:	%{name}-pulse
 
