@@ -80,8 +80,9 @@ This is the PulseAudio plugin for %{name}
 
 %prep
 %setup -qn %{name}-%{name}-%{version}
+%patch1 -p1
 %patch2 -p0
-%apply_patches
+
 
 %build
 %define _disable_ld_no_undefined 1
