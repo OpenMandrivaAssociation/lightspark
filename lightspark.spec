@@ -8,8 +8,8 @@ Version:	0.8.0
 Release:	1
 Group:		Networking/WWW
 License:	LGPLv3+
-URL:		http://lightspark.sourceforge.net
-Source0:	https://launchpadlibrarian.net/134352855/lightspark-%version.tar.gz
+URL:		http://lightspark.github.io/
+Source0:	https://github.com/lightspark/lightspark/archive/%{name}-%{version}.tar.gz
 BuildRequires:	cmake
 BuildRequires:	nasm
 BuildRequires:	boost-devel
