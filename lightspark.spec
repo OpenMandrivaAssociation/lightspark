@@ -72,7 +72,8 @@ Group:		Networking/WWW
 This is the PulseAudio plugin for %{name}
 
 %prep
-%setup -q
+%setup -qn %{name}-%{name}-%{version}
+%apply_patches
 
 %build
 %define _disable_ld_no_undefined 1
