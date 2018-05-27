@@ -11,6 +11,7 @@ License:	LGPLv3+
 URL:		http://lightspark.github.io/
 Source0:	https://github.com/lightspark/lightspark/archive/%{name}-%{version}.tar.gz
 Patch1:		lightspark-0.8.0-fix-compilation-with-llvm-5.0.patch
+Patch2:     lightspark-fix-template-codec.patch
 BuildRequires:	cmake
 BuildRequires:	nasm
 BuildRequires:	boost-devel
