@@ -1,0 +1,26 @@
+Index: src/backends/decoder.h
+===================================================================
+--- src/backends/decoder.h
++++ src/backends/decoder.h	2018-05-27 16:49:06.092662747 +0200
+@@ -321,7 +321,7 @@
+ #endif
+ 	std::vector<uint8_t> overflowBuffer;
+ 	bool fillDataAndCheckValidity();
+-	CodecID LSToFFMpegCodec(LS_AUDIO_CODEC lscodec);
++	AVCodecID LSToFFMpegCodec(LS_AUDIO_CODEC lscodec);
+ #ifdef HAVE_AVCODEC_DECODE_AUDIO4
+ 	AVFrame* frameIn;
+ 	int resampleFrameToS16(FrameSamples& curTail);
+Index: src/scripting/class.h
+===================================================================
+--- src/scripting/class.h
++++ src/scripting/class.h	2018-05-27 16:55:31.658855275 +0200
+@@ -169,7 +169,7 @@
+ 		Class<T>* c=static_cast<Class<T>*>(sys->builtinClasses[ClassName<T>::id]);
+ 		if (!c)
+ 			c = getClass(sys);
+-		T* ret = c->freelist[0].getObjectFromFreeList()->as<T>();
++		T* ret = c->freelist[0].getObjectFromFreeList()->template as<T>();
+ 		if (!ret)
+ 		{
+ 			ret=new (c->memoryAccount) T(c);
