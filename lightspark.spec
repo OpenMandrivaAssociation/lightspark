@@ -25,6 +25,8 @@ BuildRequires:	pkgconfig(libpulse)
 BuildRequires:	pkgconfig(libxml++-2.6)
 BuildRequires:	pkgconfig(libxul)
 BuildRequires:	pkgconfig(sdl)
+BuildRequires:  pkgconfig(cairo)
+BuildRequires:  pkgconfig(pango)
 Requires:	fonts-ttf-liberation
 Suggests:	%{name}-pulse
 
