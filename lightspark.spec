@@ -4,14 +4,16 @@
 
 Summary:	An alternative Flash Player implementation
 Name:		lightspark
-Version:	0.8.0
+Version:	0.8.1
 Release:	1
 Group:		Networking/WWW
 License:	LGPLv3+
 URL:		http://lightspark.github.io/
 Source0:	https://github.com/lightspark/lightspark/archive/%{name}-%{version}.tar.gz
-Patch1:		lightspark-0.8.0-fix-compilation-with-llvm-5.0.patch
-Patch2:     lightspark-fix-template-codec.patch
+# Droped patch, fixed by upstream.
+#Patch1:		lightspark-0.8.0-fix-compilation-with-llvm-5.0.patch
+# Temporary disable patch, to see what if it fixed by upstream.
+#Patch2:     lightspark-fix-template-codec.patch
 BuildRequires:	cmake
 BuildRequires:	nasm
 BuildRequires:	boost-devel
