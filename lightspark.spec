@@ -10,9 +10,9 @@ Group:		Networking/WWW
 License:	LGPLv3+
 URL:		http://lightspark.github.io/
 Source0:	https://github.com/lightspark/lightspark/archive/%{name}-%{version}.tar.gz
-# Droped patch, fixed by upstream.
+# Droped patch, fixed by upstream. (penguin)
 #Patch1:		lightspark-0.8.0-fix-compilation-with-llvm-5.0.patch
-# Temporary disable patch, to see what if it fixed by upstream.
+# Temporary disable patch, to see if it fixed by upstream. (penguin)
 #Patch2:     lightspark-fix-template-codec.patch
 BuildRequires:	cmake
 BuildRequires:	nasm
@@ -73,12 +73,12 @@ Conflicts:	gnash-firefox-plugin
 %description mozilla-plugin
 This is the Mozilla compatible plugin for %{name}
 
-%package pulse
-Summary:	PulseAudio plugin for %{name}
-Group:		Networking/WWW
-
-%description pulse
-This is the PulseAudio plugin for %{name}
+%package        ppapi-plugin
+Summary:        PPAPI compatible plugin for %{name}
+Group:          Networking/WWW
+ 	
+%description    ppapi-plugin
+This is the PPAPI compatible plugin for %{name}.
 
 %prep
 %setup -qn %{name}-%{name}-%{version}
@@ -127,6 +127,6 @@ install -Dpm 644 media/%{name}-logo.svg %{buildroot}%{_datadir}/%{name}
 %files mozilla-plugin
 %{_libdir}/mozilla/plugins/lib%{name}plugin.so
 
-%files pulse
-%{_libdir}/%{name}/plugins/lib%{name}pulseplugin.so
+%files ppapi-plugin
+%{_libdir}/%{name}/PepperFlash/
 
