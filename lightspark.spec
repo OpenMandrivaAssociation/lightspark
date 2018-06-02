@@ -128,5 +128,5 @@ install -Dpm 644 media/%{name}-logo.svg %{buildroot}%{_datadir}/%{name}
 %{_libdir}/mozilla/plugins/lib%{name}plugin.so
 
 %files ppapi-plugin
-%{_libdir}/%{name}/PepperFlash/
+%{_libdir}/PepperFlash/
 
