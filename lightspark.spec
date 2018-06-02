@@ -82,8 +82,8 @@ This is the PulseAudio plugin for %{name}
 
 %prep
 %setup -qn %{name}-%{name}-%{version}
-%patch1 -p1
-%patch2 -p0
+#patch1 -p1
+#patch2 -p0
 
 
 %build
