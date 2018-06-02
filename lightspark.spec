@@ -4,12 +4,16 @@
 
 Summary:	An alternative Flash Player implementation
 Name:		lightspark
-Version:	0.7.2
-Release:	3
+Version:	0.8.1
+Release:	1
 Group:		Networking/WWW
 License:	LGPLv3+
-URL:		http://lightspark.sourceforge.net
-Source0:	https://launchpadlibrarian.net/134352855/lightspark-%version.tar.gz
+URL:		http://lightspark.github.io/
+Source0:	https://github.com/lightspark/lightspark/archive/%{name}-%{version}.tar.gz
+# Droped patch, fixed by upstream. (penguin)
+#Patch1:		lightspark-0.8.0-fix-compilation-with-llvm-5.0.patch
+# Temporary disable patch, to see if it fixed by upstream. (penguin)
+#Patch2:     lightspark-fix-template-codec.patch
 BuildRequires:	cmake
 BuildRequires:	nasm
 BuildRequires:	boost-devel
@@ -24,6 +28,11 @@ BuildRequires:	pkgconfig(libpulse)
 BuildRequires:	pkgconfig(libxml++-2.6)
 BuildRequires:	pkgconfig(libxul)
 BuildRequires:	pkgconfig(sdl)
+BuildRequires:  pkgconfig(cairo)
+BuildRequires:  pkgconfig(pango)
+BuildRequires:  pkgconfig(pangocairo)
+BuildRequires:	pkgconfig(SDL2_mixer)
+BuildRequires:	pkgconfig(gtk+-2.0)
 Requires:	fonts-ttf-liberation
 Suggests:	%{name}-pulse
 
@@ -64,15 +73,18 @@ Conflicts:	gnash-firefox-plugin
 %description mozilla-plugin
 This is the Mozilla compatible plugin for %{name}
 
-%package pulse
-Summary:	PulseAudio plugin for %{name}
-Group:		Networking/WWW
-
-%description pulse
-This is the PulseAudio plugin for %{name}
+%package        ppapi-plugin
+Summary:        PPAPI compatible plugin for %{name}
+Group:          Networking/WWW
+ 	
+%description    ppapi-plugin
+This is the PPAPI compatible plugin for %{name}.
 
 %prep
-%setup -q
+%setup -qn %{name}-%{name}-%{version}
+#patch1 -p1
+#patch2 -p0
+
 
 %build
 %define _disable_ld_no_undefined 1
@@ -115,6 +127,6 @@ install -Dpm 644 media/%{name}-logo.svg %{buildroot}%{_datadir}/%{name}
 %files mozilla-plugin
 %{_libdir}/mozilla/plugins/lib%{name}plugin.so
 
-%files pulse
-%{_libdir}/%{name}/plugins/lib%{name}pulseplugin.so
+%files ppapi-plugin
+%{_libdir}/PepperFlash/
 
