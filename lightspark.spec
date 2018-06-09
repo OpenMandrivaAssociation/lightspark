@@ -28,13 +28,12 @@ BuildRequires:	pkgconfig(libpulse)
 BuildRequires:	pkgconfig(libxml++-2.6)
 BuildRequires:	pkgconfig(libxul)
 BuildRequires:	pkgconfig(sdl)
-BuildRequires:  pkgconfig(cairo)
-BuildRequires:  pkgconfig(pango)
-BuildRequires:  pkgconfig(pangocairo)
+BuildRequires: pkgconfig(cairo)
+BuildRequires: pkgconfig(pango)
+BuildRequires: pkgconfig(pangocairo)
 BuildRequires:	pkgconfig(SDL2_mixer)
 BuildRequires:	pkgconfig(gtk+-2.0)
 Requires:	fonts-ttf-liberation
-Suggests:	%{name}-pulse
 
 %description
 Lightspark is a modern, free, open-source flash player implementation.
@@ -66,8 +65,6 @@ Development files for the %{name} libraries.
 %package mozilla-plugin
 Summary:	Mozilla compatible plugin for %{name}
 Group:		Networking/WWW
-Suggests:	gnash
-Suggests:	%{name}-pulse
 Conflicts:	gnash-firefox-plugin
 
 %description mozilla-plugin
