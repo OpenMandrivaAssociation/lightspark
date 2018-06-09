@@ -9,7 +9,7 @@ Release:	1
 Group:		Networking/WWW
 License:	LGPLv3+
 URL:		http://lightspark.github.io/
-Source0:	https://github.com/lightspark/lightspark/archive/%{name}-%{version}.tar.gz
+Source0:	https://github.com/lightspark/lightspark/archive/%{name}-%{version}/%{name}-%{version}.tar.gz
 # Droped patch, fixed by upstream. (penguin)
 #Patch1:		lightspark-0.8.0-fix-compilation-with-llvm-5.0.patch
 # Temporary disable patch, to see if it fixed by upstream. (penguin)
