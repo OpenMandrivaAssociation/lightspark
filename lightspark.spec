@@ -78,7 +78,7 @@ Group:          Networking/WWW
 This is the PPAPI compatible plugin for %{name}.
 
 %prep
-%setup -qn %{name}-%{name}-%{version}
+%setup -qn %{name}-%{version}
 #patch1 -p1
 #patch2 -p0
 
