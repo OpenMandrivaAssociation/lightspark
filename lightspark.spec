@@ -89,9 +89,9 @@ rm -f build
 %cmake \
     -DCOMPILE_PLUGIN=1 \
     -DPLUGIN_DIRECTORY="%{_libdir}/mozilla/plugins/" \
-    -DPPAPI_PLUGIN_DIRECTORY=%{_libdir}/%{name}/PepperFlash \
     -DENABLE_SOUND=1 \
     -DGNASH_EXE_PATH="%{_bindir}/gnash"
+#    -DPPAPI_PLUGIN_DIRECTORY=%{_libdir}/%{name}/PepperFlash \
 
 %make_build
 
