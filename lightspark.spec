@@ -9,7 +9,8 @@ Release:	1
 Group:		Networking/WWW
 License:	LGPLv3+
 URL:		http://lightspark.github.io/
-Source0:	https://github.com/lightspark/lightspark/archive/%{name}-%{version}/%{name}-%{version}.tar.gz
+#Source0:	https://github.com/lightspark/lightspark/archive/%{name}-%{version}/%{name}-%{version}.tar.gz
+Source0: %{name}-master.zip
 
 BuildRequires:	cmake
 BuildRequires:	nasm
@@ -79,10 +80,7 @@ Group:          Networking/WWW
 This is the PPAPI compatible plugin for %{name}.
 
 %prep
-%setup -qn %{name}-%{version}
-#patch1 -p1
-#patch2 -p0
-
+%setup -qn %{name}-master
 
 %build
 %define _disable_ld_no_undefined 1
