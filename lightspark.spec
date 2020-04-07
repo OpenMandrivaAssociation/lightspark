@@ -89,6 +89,7 @@ rm -f build
 %cmake \
     -DCOMPILE_PLUGIN=1 \
     -DPLUGIN_DIRECTORY="%{_libdir}/mozilla/plugins/" \
+    -DPPAPI_PLUGIN_DIRECTORY=%{_libdir}/%{name}/PepperFlash \
     -DENABLE_SOUND=1 \
     -DGNASH_EXE_PATH="%{_bindir}/gnash"
 
@@ -109,7 +110,6 @@ install -Dpm 644 media/%{name}-logo.svg %{buildroot}%{_datadir}/%{name}
 %doc COPYING COPYING.LESSER ChangeLog
 %config(noreplace) %{_sysconfdir}/xdg/lightspark.conf
 %{_bindir}/%{name}
-%{_bindir}/tightspark
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/%{name}
 %{_iconsdir}/hicolor/*/apps/%{name}.*
