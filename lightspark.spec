@@ -82,6 +82,8 @@ This is the PPAPI compatible plugin for %{name}.
 %prep
 %setup -qn %{name}-master
 
+rm -f build
+
 %build
 %define _disable_ld_no_undefined 1
 %cmake \
