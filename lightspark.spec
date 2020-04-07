@@ -4,16 +4,13 @@
 
 Summary:	An alternative Flash Player implementation
 Name:		lightspark
-Version:	0.8.1
+Version:	0.8.2
 Release:	1
 Group:		Networking/WWW
 License:	LGPLv3+
 URL:		http://lightspark.github.io/
 Source0:	https://github.com/lightspark/lightspark/archive/%{name}-%{version}/%{name}-%{version}.tar.gz
-# Droped patch, fixed by upstream. (penguin)
-#Patch1:		lightspark-0.8.0-fix-compilation-with-llvm-5.0.patch
-# Temporary disable patch, to see if it fixed by upstream. (penguin)
-#Patch2:     lightspark-fix-template-codec.patch
+
 BuildRequires:	cmake
 BuildRequires:	nasm
 BuildRequires:	boost-devel
@@ -91,10 +88,10 @@ This is the PPAPI compatible plugin for %{name}.
     -DENABLE_SOUND=1 \
     -DGNASH_EXE_PATH="%{_bindir}/gnash"
 
-%make
+%make_build
 
 %install
-%makeinstall_std -C build
+%make_install -C build
 
 #(eandry) tell lightspark where the libs are
 install -d -m 0755  %{buildroot}%{_sysconfdir}/ld.so.conf.d
@@ -126,4 +123,3 @@ install -Dpm 644 media/%{name}-logo.svg %{buildroot}%{_datadir}/%{name}
 
 %files ppapi-plugin
 %{_libdir}/PepperFlash/
-
