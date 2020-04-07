@@ -31,6 +31,8 @@ BuildRequires: pkgconfig(pango)
 BuildRequires: pkgconfig(pangocairo)
 BuildRequires:	pkgconfig(SDL2_mixer)
 BuildRequires:	pkgconfig(gtk+-2.0)
+BuildRequires:	pkgconfig(librtmp)
+
 Requires:	fonts-ttf-liberation
 
 %description
