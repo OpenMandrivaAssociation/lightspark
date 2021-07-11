@@ -4,8 +4,8 @@
 
 Summary:	An alternative Flash Player implementation
 Name:		lightspark
-Version:	0.8.4.1
-Release:	2
+Version:	0.8.5
+Release:	1
 Group:		Networking/WWW
 License:	LGPLv3+
 URL:		http://lightspark.github.io/
