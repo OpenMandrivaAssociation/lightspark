@@ -1,0 +1,71 @@
+diff -up lightspark-0.8.5/src/backends/decoder.cpp.omv~ lightspark-0.8.5/src/backends/decoder.cpp
+--- lightspark-0.8.5/src/backends/decoder.cpp.omv~	2022-03-16 18:55:07.437712390 +0100
++++ lightspark-0.8.5/src/backends/decoder.cpp	2022-03-16 19:07:32.934525111 +0100
+@@ -155,7 +155,7 @@ void FFMpegVideoDecoder::switchCodec(LS_
+ #else
+ 	codecContext=avcodec_alloc_context();
+ #endif //HAVE_AVCODEC_ALLOC_CONTEXT3
+-	AVCodec* codec=NULL;
++	const AVCodec* codec=NULL;
+ 	videoCodec=codecId;
+ 	if(codecId==H264)
+ 	{
+@@ -242,7 +242,7 @@ FFMpegVideoDecoder::FFMpegVideoDecoder(A
+ 			return;
+ 	}
+ 	avcodec_parameters_to_context(codecContext,codecPar);
+-	AVCodec* codec=avcodec_find_decoder(codecPar->codec_id);
++	const AVCodec* codec=avcodec_find_decoder(codecPar->codec_id);
+ #ifdef HAVE_AVCODEC_OPEN2
+ 	if(avcodec_open2(codecContext, codec, NULL)<0)
+ #else
+@@ -733,7 +733,7 @@ void FFMpegAudioDecoder::switchCodec(LS_
+ 	if (resamplecontext)
+ 		avresample_free(&resamplecontext);
+ #endif
+-	AVCodec* codec=avcodec_find_decoder(LSToFFMpegCodec(audioCodec));
++	const AVCodec* codec=avcodec_find_decoder(LSToFFMpegCodec(audioCodec));
+ 	assert(codec);
+ 
+ #ifdef HAVE_AVCODEC_ALLOC_CONTEXT3
+@@ -769,7 +769,7 @@ FFMpegAudioDecoder::FFMpegAudioDecoder(E
+ 	status=INIT;
+ 
+ 	CodecID codecId = LSToFFMpegCodec(lscodec);
+-	AVCodec* codec=avcodec_find_decoder(codecId);
++	const AVCodec* codec=avcodec_find_decoder(codecId);
+ 	assert(codec);
+ 	codecContext=avcodec_alloc_context3(codec);
+ 	codecContext->codec_id = codecId;
+@@ -808,7 +808,7 @@ FFMpegAudioDecoder::FFMpegAudioDecoder(E
+ #endif
+ {
+ 	status=INIT;
+-	AVCodec* codec=avcodec_find_decoder(codecPar->codec_id);
++	const AVCodec* codec=avcodec_find_decoder(codecPar->codec_id);
+ 	assert(codec);
+ #ifdef HAVE_AVCODEC_ALLOC_CONTEXT3
+ 	codecContext=avcodec_alloc_context3(NULL);
+@@ -1270,7 +1270,7 @@ FFMpegStreamDecoder::FFMpegStreamDecoder
+ 	avioContext->is_streamed=1;
+ #endif
+ 
+-	AVInputFormat* fmt = NULL;
++	const AVInputFormat* fmt = NULL;
+ 	if (format)
+ 	{
+ 		switch (format->codec)
+diff -up lightspark-0.8.5/src/backends/decoder.h.omv~ lightspark-0.8.5/src/backends/decoder.h
+--- lightspark-0.8.5/src/backends/decoder.h.omv~	2022-03-16 18:57:11.114375576 +0100
++++ lightspark-0.8.5/src/backends/decoder.h	2022-03-16 19:00:11.352501580 +0100
+@@ -366,10 +366,8 @@ private:
+ 	std::vector<uint8_t> overflowBuffer;
+ 	bool fillDataAndCheckValidity();
+ 	CodecID LSToFFMpegCodec(LS_AUDIO_CODEC lscodec);
+-#ifdef HAVE_AVCODEC_DECODE_AUDIO4
+ 	AVFrame* frameIn;
+ 	int resampleFrameToS16(FrameSamples& curTail);
+-#endif
+ public:
+ 	FFMpegAudioDecoder(EngineData* eng,LS_AUDIO_CODEC codec, uint8_t* initdata, uint32_t datalen);
+ 	FFMpegAudioDecoder(EngineData* eng,LS_AUDIO_CODEC codec, int sampleRate, int channels, bool);

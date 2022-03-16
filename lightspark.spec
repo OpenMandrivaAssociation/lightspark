@@ -5,11 +5,12 @@
 Summary:	An alternative Flash Player implementation
 Name:		lightspark
 Version:	0.8.5
-Release:	1
+Release:	2
 Group:		Networking/WWW
 License:	LGPLv3+
 URL:		http://lightspark.github.io/
 Source0:	https://github.com/lightspark/lightspark/archive/%{name}-%{version}/%{name}-%{version}.tar.gz
+Patch0:		lightspark-0.8.5-ffmpeg-5.0.patch
 
 BuildRequires:	cmake
 BuildRequires:	nasm
@@ -79,7 +80,7 @@ Group:          Networking/WWW
 This is the PPAPI compatible plugin for %{name}.
 
 %prep
-%setup -qn %{name}-%{version}
+%autosetup -p1
 
 rm -f build
 
