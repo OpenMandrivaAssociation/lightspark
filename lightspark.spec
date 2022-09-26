@@ -10,7 +10,7 @@ Group:		Networking/WWW
 License:	LGPLv3+
 URL:		http://lightspark.github.io/
 Source0:	https://github.com/lightspark/lightspark/archive/%{name}-%{version}/%{name}-%{version}.tar.gz
-#Patch0:		lightspark-0.8.5-ffmpeg-5.0.patch
+
 
 BuildRequires:	cmake
 BuildRequires:	nasm
@@ -105,9 +105,9 @@ echo "%{_libdir}/lightspark" > %{buildroot}%{_sysconfdir}/ld.so.conf.d/lightspar
 
 install -Dpm 644 media/%{name}-logo.svg %{buildroot}%{_datadir}/%{name}
 
-%find_lang %{name}
-
-%files -f %{name}.lang
+#%find_lang %{name}
+# -f %{name}.lang
+%files
 %doc COPYING COPYING.LESSER ChangeLog
 %config(noreplace) %{_sysconfdir}/xdg/lightspark.conf
 %{_bindir}/%{name}
