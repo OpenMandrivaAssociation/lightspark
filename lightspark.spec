@@ -10,7 +10,7 @@ Group:		Networking/WWW
 License:	LGPLv3+
 URL:		http://lightspark.github.io/
 Source0:	https://github.com/lightspark/lightspark/archive/%{name}-%{version}/%{name}-%{version}.tar.gz
-Patch0:		lightspark-0.8.5-ffmpeg-5.0.patch
+#Patch0:		lightspark-0.8.5-ffmpeg-5.0.patch
 
 BuildRequires:	cmake
 BuildRequires:	nasm
