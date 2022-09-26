@@ -34,6 +34,7 @@ BuildRequires:	pkgconfig(SDL2_mixer)
 BuildRequires:	pkgconfig(gtk+-2.0)
 BuildRequires:	pkgconfig(librtmp)
 BuildRequires:	pkgconfig(libjpeg)
+BuildRequires:	pkgconfig(zlib)
 
 Requires:	fonts-ttf-liberation
 
