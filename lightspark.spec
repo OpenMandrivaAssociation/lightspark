@@ -8,7 +8,7 @@ Version:	0.8.7
 Release:	2
 Group:		Networking/WWW
 License:	LGPLv3+
-URL:		http://lightspark.github.io/
+URL:		https://lightspark.github.io/
 Source0:	https://github.com/lightspark/lightspark/archive/%{name}-%{version}/%{name}-%{version}.tar.gz
 
 
