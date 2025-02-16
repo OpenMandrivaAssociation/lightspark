@@ -119,6 +119,7 @@ install -Dpm 644 media/%{name}-logo.svg %{buildroot}%{_datadir}/%{name}
 %files -n %{libname}
 %config %{_sysconfdir}/ld.so.conf.d/lightspark.conf
 %{_libdir}/%{name}/lib%{name}.so.*
+%{_libdir}/lightspark/libCore.so*
 
 %files -n %{devname}
 %{_libdir}/%{name}/lib%{name}.so
