@@ -5,7 +5,7 @@
 Summary:	An alternative Flash Player implementation
 Name:		lightspark
 Version:	0.9.0
-Release:	6
+Release:	7
 Group:		Networking/WWW
 License:	LGPLv3+
 URL:		https://lightspark.github.io/
@@ -23,7 +23,7 @@ BuildRequires:	pkgconfig(libavcodec)
 BuildRequires:	pkgconfig(libcurl)
 BuildRequires:	pkgconfig(libpcre)
 BuildRequires:	pkgconfig(libpulse)
-BuildRequires:	pkgconfig(libxml++-2.6)
+BuildRequires:	pkgconfig(libxml++-5.0)
 #BuildRequires:	pkgconfig(libxul)
 BuildRequires:	pkgconfig(sdl2)
 BuildRequires:	pkgconfig(SDL2_mixer)
@@ -129,3 +129,6 @@ install -Dpm 644 media/%{name}-logo.svg %{buildroot}%{_datadir}/%{name}
 
 %files ppapi-plugin
 %{_libdir}/PepperFlash/
+
+# keep %mklibname visible for rpmlint SpecCheck (checks last line only)
+# %mklibname
