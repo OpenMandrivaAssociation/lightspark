@@ -5,7 +5,7 @@
 Summary:	An alternative Flash Player implementation
 Name:		lightspark
 Version:	0.9.0
-Release:	7
+Release:	8
 Group:		Networking/WWW
 License:	LGPLv3+
 URL:		https://lightspark.github.io/
@@ -13,6 +13,7 @@ Source0:	https://github.com/lightspark/lightspark/archive/%{name}-%{version}/%{n
 
 
 BuildRequires:	cmake
+BuildRequires:	ninja
 BuildRequires:	nasm
 BuildRequires:	boost-devel
 BuildRequires:	llvm-devel
@@ -87,17 +88,17 @@ rm -f build
 
 %build
 %define _disable_ld_no_undefined 1
-%cmake \
-    -DCOMPILE_PLUGIN=1 \
-    -DPLUGIN_DIRECTORY="%{_libdir}/mozilla/plugins/" \
-    -DENABLE_SOUND=1 \
-    -DGNASH_EXE_PATH="%{_bindir}/gnash"
+%cmake -G Ninja \
+	-DCOMPILE_PLUGIN=1 \
+	-DPLUGIN_DIRECTORY="%{_libdir}/mozilla/plugins/" \
+	-DENABLE_SOUND=1 \
+	-DGNASH_EXE_PATH="%{_bindir}/gnash"
 #    -DPPAPI_PLUGIN_DIRECTORY=%{_libdir}/%{name}/PepperFlash \
 
-%make_build
+%ninja_build -C build
 
 %install
-%make_install -C build
+%ninja_install -C build
 
 #(eandry) tell lightspark where the libs are
 install -d -m 0755  %{buildroot}%{_sysconfdir}/ld.so.conf.d
