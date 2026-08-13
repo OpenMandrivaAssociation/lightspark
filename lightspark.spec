@@ -95,7 +95,7 @@ rm -f build
 	-DGNASH_EXE_PATH="%{_bindir}/gnash"
 #    -DPPAPI_PLUGIN_DIRECTORY=%{_libdir}/%{name}/PepperFlash \
 
-%ninja_build -C build
+%ninja_build
 
 %install
 %ninja_install -C build
