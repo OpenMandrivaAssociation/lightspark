@@ -130,6 +130,3 @@ install -Dpm 644 media/%{name}-logo.svg %{buildroot}%{_datadir}/%{name}
 
 %files ppapi-plugin
 %{_libdir}/PepperFlash/
-
-# keep %mklibname visible for rpmlint SpecCheck (checks last line only)
-# %mklibname
