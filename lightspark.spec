@@ -4,8 +4,8 @@
 
 Summary:	An alternative Flash Player implementation
 Name:		lightspark
-Version:	0.9.0
-Release:	8
+Version:	0.10.0
+Release:	1
 Group:		Networking/WWW
 License:	LGPLv3+
 URL:		https://lightspark.github.io/
@@ -19,7 +19,6 @@ BuildRequires:	boost-devel
 BuildRequires:	llvm-devel
 BuildRequires:	pkgconfig(fontconfig)
 BuildRequires:	pkgconfig(ftgl)
-BuildRequires:	pkgconfig(glew)
 BuildRequires:	pkgconfig(libavcodec)
 BuildRequires:	pkgconfig(libcurl)
 BuildRequires:	pkgconfig(libpcre)
@@ -28,7 +27,6 @@ BuildRequires:	pkgconfig(libxml++-5.0)
 #BuildRequires:	pkgconfig(libxul)
 BuildRequires:	pkgconfig(sdl2)
 BuildRequires:	pkgconfig(SDL2_mixer)
-BuildRequires: pkgconfig(cairo)
 BuildRequires: pkgconfig(pango)
 BuildRequires: pkgconfig(pangocairo)
 BuildRequires:	pkgconfig(SDL2_mixer)
